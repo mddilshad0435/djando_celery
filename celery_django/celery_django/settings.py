@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp',
     'django_celery_results',
+    'django_celery_beat',
+    'sendMail',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +134,16 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
 
-CELERY_RESULT_BACKEND = 'djcelery.backends.database.DatabaseBackend'
+CELERY_RESULT_BACKEND = 'django-db'
 
 #CELERY BEAT
-CELERU_BEAT_SCHEDULER = 'django_celery_beat.schedulars:Database'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulars:DatabaseSchedular'
+
+#SMTP settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'dilshad.ongraph@gmail.com'
+EMAIL_HOST_PASSWORD = 'qyusnqjaycgiqxnu'
+DEFAULT_FROM_EMAIL = 'Celery <dilshad.ongraph@gmail.com>'
